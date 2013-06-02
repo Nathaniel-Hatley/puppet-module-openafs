@@ -16,7 +16,7 @@ class openafs::params {
       $server_thiscell     = '/etc/openafs/server/ThisCell'
       $server_cellservdb   = '/etc/openafs/server/CellServDB'
       $bos                 = '/usr/bin/bos'
-      
+      $dkms_deb            = '/vagrant/deb/openafs-dkms_1.6.1_all.deb'
     }
     default: {
       fail("The ${module_name} module is not supported on ${::osfamily} based systems")
