@@ -1,0 +1,8 @@
+>grand.central.org      #GCO Public CellServDB 14 Aug 2011
+18.9.48.14                      #grand.mit.edu
+128.2.203.61                    #penn.central.org
+130.237.48.87                   #andrew.e.kth.se
+><%= @cell %>
+<% for i in (0..(db_hostnames.length()-1)) -%>
+<%= sprintf "%-30s #%s", db_ips[i], db_hostnames[i] %>
+<% end -%>

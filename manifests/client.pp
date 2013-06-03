@@ -6,7 +6,7 @@
 #
 # Copyright 2013 Jason Edgecombe, unless otherwise noted.
 #
-class openafs::client($cell = 'example.com') inherits openafs::base {
+class openafs::client($cell = 'example.com', $db_hostnames=[], $db_ips=[]) inherits openafs::base {
   include openafs::base
 
   package { 'openafs-client-packages' :
@@ -21,11 +21,24 @@ class openafs::client($cell = 'example.com') inherits openafs::base {
     require  => Package['openafs-client-packages'],
     before   => Service['openafs-client'],
   }
+
+  file { 'client-ThisCell':
+    ensure => file,
+    path => $openafs::params::client_thiscell,
+    content => "$cell\n",    
+  }
+  
+  file { 'client-CellServDB': 
+    ensure => file,
+    path => $openafs::params::client_cellservdb,
+    content => template('openafs/client-CellServDB.erb'),    
+  }
   
   service { 'openafs-client':
     ensure     => running,
     enable     => true,
     hasrestart => true,
     hasstatus  => true,
+    subscribe  => [ File['client-CellServDB'], File['client-ThisCell'] ],
   }
 }

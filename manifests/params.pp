@@ -13,6 +13,8 @@ class openafs::params {
       $client_packages     = [ 'openafs-client','openafs-krb5','openafs-modules-dkms' ]
       $fileserver_packages = [ 'openafs-fileserver','openafs-krb5' ]
       $dbserver_packages   = [ 'openafs-dbserver' ]
+      $client_thiscell     = '/etc/openafs/ThisCell'
+      $client_cellservdb   = '/etc/openafs/CellServDB'
       $server_thiscell     = '/etc/openafs/server/ThisCell'
       $server_cellservdb   = '/etc/openafs/server/CellServDB'
       $bos                 = '/usr/bin/bos'
