@@ -13,6 +13,12 @@ class openafs::base {
     command => "/usr/bin/apt-get update"
   }
 
+  File {
+    mode  => '0644',
+    owner => 'root',
+    group => 'root',
+  }
+
   Exec["apt-update"] -> Package <| |>
 }
 
