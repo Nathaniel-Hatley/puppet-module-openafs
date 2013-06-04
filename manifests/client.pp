@@ -25,13 +25,15 @@ class openafs::client($cell = 'example.com', $db_hostnames=[], $db_ips=[]) inher
   file { 'client-ThisCell':
     ensure => file,
     path => $openafs::params::client_thiscell,
-    content => "$cell\n",    
+    content => "$cell\n",
+    require => Package['openafs-client-packages'],
   }
   
   file { 'client-CellServDB': 
     ensure => file,
     path => $openafs::params::client_cellservdb,
     content => template('openafs/client-CellServDB.erb'),    
+    require => Package['openafs-client-packages'],
   }
   
   service { 'openafs-client':
