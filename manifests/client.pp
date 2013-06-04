@@ -40,7 +40,8 @@ class openafs::client($cell = 'example.com', $db_hostnames=[], $db_ips=[]) inher
     ensure     => running,
     enable     => true,
     hasrestart => true,
-    hasstatus  => true,
+    hasstatus  => false,
+    pattern    => 'afsd',
     subscribe  => [ File['client-CellServDB'], File['client-ThisCell'] ],
   }
 }
